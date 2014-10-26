@@ -93,7 +93,7 @@ features.to.read <- features[grep("mean\\(\\)|std\\(\\)", features$V2), ]
 #  generate a colClasess vector with length fueatures length filled with "NULL" value
 col.classes <- rep("NULL",nrow(features))
 
-#  vector of the features row numbers to be read
+#  vector of the features index numbers to be read
 col.to.read <- as.vector(features.to.read$V1)
 
 #  change colClasses vector from "NULL" to "numeric" in the indexes where mean() and std() features values are
@@ -153,10 +153,7 @@ remove(app.col.names)
 #  aggregate function will be used. Data set to aggregate goes form 3 to last columns
 #  aggregated by tidy1$activity and tidys1$subject with names for column names to be set 
 #  for these two values the aggregation function is set to mean 
-
-tidy2 <- aggregate(x=tidy1[,3:length(tidy1)],by=list(activity=tidy1$activity,subject=tidy1$subject),FUN=mean)
+tidy2 <- aggregate( x=tidy1[,3:length(tidy1)] , by=list(activity=tidy1$activity,subject=tidy1$subject) , FUN=mean)
 
 #  write tidy2 dataset to file
 write.table (tidy2, "tidy2.txt", row.names=F, col.names=F, quote=FALSE)
-
-

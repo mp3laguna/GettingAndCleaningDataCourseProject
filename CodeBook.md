@@ -1,20 +1,108 @@
+#Getting And Cleaning Data Course Project 
+Code Book
+===================================  
 
-code book that describes the variables, the data, and any transformations or 
-work performed to clean up the data
+  
+
+A) Original Data to be cleaned
+=============
+
+Data is downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and contains code book:
+
+==================================================================  
+Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+==================================================================  
+Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.   
+Smartlab - Non Linear Complex Systems Laboratory   
+DITEN - Università degli Studi di Genova.   
+Via Opera Pia 11A, I-16145, Genoa, Italy.   
+activityrecognition@smartlab.ws   
+www.smartlab.ws   
+==================================================================  
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+
+###For each record it is provided:
 
 
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+###The dataset includes the following files:
 
 
+- 'README.txt'
+
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+
+- 'features.txt': List of all features.
+
+- 'activity_labels.txt': Links the class labels with their activity name.
+
+- 'train/X_train.txt': Training set.
+
+- 'train/y_train.txt': Training labels.
+
+- 'test/X_test.txt': Test set.
+
+- 'test/y_test.txt': Test labels.
+
+The following files are available for the train and test data. Their descriptions are equivalent. 
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+
+- 'train/Inertial Signals/total_acc_x_train.txt': The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. Every row shows a 128 element vector. The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_train.txt' files for the Y and Z axis. 
+
+- 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
+
+- 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
+
+###Notes: 
+
+- Features are normalized and bounded within [-1,1].
+- Each feature vector is a row on the text file.
+
+For more information about this dataset contact: activityrecognition@smartlab.ws
+
+###License:
+
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
 
 
+B) Transformations and work performed to clean up the data
+=============
+
+From the data stored as defined prevoiusly, X_train.txt and X_test.txt data is loaded. Only column with "mean()" or "std()" string included in its feature name are readed.
+
+Then subject (train/subject_train.txt and test/subject_test.txt) and activities (train/y_train.txt and test/y_test.txt) columns are added on both train and test datasets, and resulting data frames are binded in a data frame called tidy1. Columns are appropiately labeled with alphanumeric lower case labels. Feature names are loaded from features.txt.
+
+Once tidy1 data frame is ready, a second, independent tidy data set with the average of each variable for each activity and each subject is created and named tidy2.
+
+
+C) Tidy data Codebook
+=====================
+
+Table with the average of each variable for each activity and each subject. Columns names and contents:
 
 ====================================================================
 
-   tidy2.activity
+activity
 
 --------------------------------------------------------------------
 
-   Storage mode: character  
+   Storage mode: character
    Measurement: nominal
 
    Values and labels     N     Percent  
@@ -23,7 +111,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.subject
+subject
 
 --------------------------------------------------------------------
 
@@ -39,7 +127,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccmeanx
+tbodyaccmeanx
 
 --------------------------------------------------------------------
 
@@ -55,7 +143,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccmeany
+tbodyaccmeany
 
 --------------------------------------------------------------------
 
@@ -71,7 +159,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccmeanz
+tbodyaccmeanz
 
 --------------------------------------------------------------------
 
@@ -87,7 +175,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccstdx
+tbodyaccstdx
 
 --------------------------------------------------------------------
 
@@ -103,7 +191,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccstdy
+tbodyaccstdy
 
 --------------------------------------------------------------------
 
@@ -119,7 +207,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccstdz
+tbodyaccstdz
 
 --------------------------------------------------------------------
 
@@ -135,7 +223,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccmeanx
+tgravityaccmeanx
 
 --------------------------------------------------------------------
 
@@ -151,7 +239,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccmeany
+tgravityaccmeany
 
 --------------------------------------------------------------------
 
@@ -167,7 +255,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccmeanz
+tgravityaccmeanz
 
 --------------------------------------------------------------------
 
@@ -183,7 +271,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccstdx
+tgravityaccstdx
 
 --------------------------------------------------------------------
 
@@ -199,7 +287,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccstdy
+tgravityaccstdy
 
 --------------------------------------------------------------------
 
@@ -215,7 +303,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccstdz
+tgravityaccstdz
 
 --------------------------------------------------------------------
 
@@ -231,7 +319,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkmeanx
+tbodyaccjerkmeanx
 
 --------------------------------------------------------------------
 
@@ -247,7 +335,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkmeany
+tbodyaccjerkmeany
 
 --------------------------------------------------------------------
 
@@ -263,7 +351,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkmeanz
+tbodyaccjerkmeanz
 
 --------------------------------------------------------------------
 
@@ -279,7 +367,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkstdx
+tbodyaccjerkstdx
 
 --------------------------------------------------------------------
 
@@ -295,7 +383,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkstdy
+tbodyaccjerkstdy
 
 --------------------------------------------------------------------
 
@@ -311,7 +399,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkstdz
+tbodyaccjerkstdz
 
 --------------------------------------------------------------------
 
@@ -327,7 +415,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyromeanx
+tbodygyromeanx
 
 --------------------------------------------------------------------
 
@@ -343,7 +431,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyromeany
+tbodygyromeany
 
 --------------------------------------------------------------------
 
@@ -359,7 +447,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyromeanz
+tbodygyromeanz
 
 --------------------------------------------------------------------
 
@@ -375,7 +463,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrostdx
+tbodygyrostdx
 
 --------------------------------------------------------------------
 
@@ -391,7 +479,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrostdy
+tbodygyrostdy
 
 --------------------------------------------------------------------
 
@@ -407,7 +495,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrostdz
+tbodygyrostdz
 
 --------------------------------------------------------------------
 
@@ -423,7 +511,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkmeanx
+tbodygyrojerkmeanx
 
 --------------------------------------------------------------------
 
@@ -439,7 +527,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkmeany
+tbodygyrojerkmeany
 
 --------------------------------------------------------------------
 
@@ -455,7 +543,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkmeanz
+tbodygyrojerkmeanz
 
 --------------------------------------------------------------------
 
@@ -471,7 +559,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkstdx
+tbodygyrojerkstdx
 
 --------------------------------------------------------------------
 
@@ -487,7 +575,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkstdy
+tbodygyrojerkstdy
 
 --------------------------------------------------------------------
 
@@ -503,7 +591,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkstdz
+tbodygyrojerkstdz
 
 --------------------------------------------------------------------
 
@@ -519,7 +607,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccmagmean
+tbodyaccmagmean
 
 --------------------------------------------------------------------
 
@@ -535,7 +623,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccmagstd
+tbodyaccmagstd
 
 --------------------------------------------------------------------
 
@@ -551,7 +639,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccmagmean
+tgravityaccmagmean
 
 --------------------------------------------------------------------
 
@@ -567,7 +655,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tgravityaccmagstd
+tgravityaccmagstd
 
 --------------------------------------------------------------------
 
@@ -583,7 +671,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkmagmean
+tbodyaccjerkmagmean
 
 --------------------------------------------------------------------
 
@@ -599,7 +687,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodyaccjerkmagstd
+tbodyaccjerkmagstd
 
 --------------------------------------------------------------------
 
@@ -615,7 +703,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyromagmean
+tbodygyromagmean
 
 --------------------------------------------------------------------
 
@@ -631,7 +719,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyromagstd
+tbodygyromagstd
 
 --------------------------------------------------------------------
 
@@ -647,7 +735,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkmagmean
+tbodygyrojerkmagmean
 
 --------------------------------------------------------------------
 
@@ -663,7 +751,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.tbodygyrojerkmagstd
+tbodygyrojerkmagstd
 
 --------------------------------------------------------------------
 
@@ -679,7 +767,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccmeanx
+fbodyaccmeanx
 
 --------------------------------------------------------------------
 
@@ -695,7 +783,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccmeany
+fbodyaccmeany
 
 --------------------------------------------------------------------
 
@@ -711,7 +799,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccmeanz
+fbodyaccmeanz
 
 --------------------------------------------------------------------
 
@@ -727,7 +815,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccstdx
+fbodyaccstdx
 
 --------------------------------------------------------------------
 
@@ -743,7 +831,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccstdy
+fbodyaccstdy
 
 --------------------------------------------------------------------
 
@@ -759,7 +847,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccstdz
+fbodyaccstdz
 
 --------------------------------------------------------------------
 
@@ -775,7 +863,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkmeanx
+fbodyaccjerkmeanx
 
 --------------------------------------------------------------------
 
@@ -791,7 +879,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkmeany
+fbodyaccjerkmeany
 
 --------------------------------------------------------------------
 
@@ -807,7 +895,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkmeanz
+fbodyaccjerkmeanz
 
 --------------------------------------------------------------------
 
@@ -823,7 +911,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkstdx
+fbodyaccjerkstdx
 
 --------------------------------------------------------------------
 
@@ -839,7 +927,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkstdy
+fbodyaccjerkstdy
 
 --------------------------------------------------------------------
 
@@ -855,7 +943,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccjerkstdz
+fbodyaccjerkstdz
 
 --------------------------------------------------------------------
 
@@ -871,7 +959,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyromeanx
+fbodygyromeanx
 
 --------------------------------------------------------------------
 
@@ -887,7 +975,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyromeany
+fbodygyromeany
 
 --------------------------------------------------------------------
 
@@ -903,7 +991,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyromeanz
+fbodygyromeanz
 
 --------------------------------------------------------------------
 
@@ -919,7 +1007,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyrostdx
+fbodygyrostdx
 
 --------------------------------------------------------------------
 
@@ -935,7 +1023,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyrostdy
+fbodygyrostdy
 
 --------------------------------------------------------------------
 
@@ -951,7 +1039,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodygyrostdz
+fbodygyrostdz
 
 --------------------------------------------------------------------
 
@@ -967,7 +1055,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccmagmean
+fbodyaccmagmean
 
 --------------------------------------------------------------------
 
@@ -983,7 +1071,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodyaccmagstd
+fbodyaccmagstd
 
 --------------------------------------------------------------------
 
@@ -999,7 +1087,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodyaccjerkmagmean
+fbodybodyaccjerkmagmean
 
 --------------------------------------------------------------------
 
@@ -1015,7 +1103,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodyaccjerkmagstd
+fbodybodyaccjerkmagstd
 
 --------------------------------------------------------------------
 
@@ -1031,7 +1119,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodygyromagmean
+fbodybodygyromagmean
 
 --------------------------------------------------------------------
 
@@ -1047,7 +1135,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodygyromagstd
+fbodybodygyromagstd
 
 --------------------------------------------------------------------
 
@@ -1063,7 +1151,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodygyrojerkmagmean
+fbodybodygyrojerkmagmean
 
 --------------------------------------------------------------------
 
@@ -1079,7 +1167,7 @@ work performed to clean up the data
 
 ====================================================================
 
-   tidy2.fbodybodygyrojerkmagstd
+fbodybodygyrojerkmagstd
 
 --------------------------------------------------------------------
 

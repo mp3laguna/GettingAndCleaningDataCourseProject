@@ -53,7 +53,7 @@ As two main tables are needed (train and test datasets) and same operations are 
 **activities.file.-** data file with activities (laying, sitting, ...) for each record in data set (y_train.txt or y_test.txt files)   
 **subjects.file.-** data file name with subjects for each record in data set (in this case subject 1 to 30)   
 **activity.labels.-** data file name of activities names. This data frame is used to bind activities in activities.file (that contains and activity index) with the activity name.   
-**col.names.-** vector containing all of the column names in data set. This information is preoiusly obtained from features.txt file.   
+**col.names.-** vector containing all of the column names in data set. This information is previously obtained from features.txt file.   
 **col.classes.-** this vector is used to only read the columns needed form data set. It contains the character value "NULL"" in the columns that are not going to be read and the value "numeric" in the columns needed (the ones containing mean and standar deviation values)   
 
 
@@ -98,13 +98,13 @@ A col.classes vector is generated including character "NULL" value for columns n
 
         #  generate a colClasess vector with length fueatures length filled with "NULL" value
         col.classes <- rep("NULL",nrow(features))
-        #  vector of the features row numbers to be read
+        #  vector of the features index numbers to be read
         col.to.read <- as.vector(features.to.read$V1)
         #  change colClasses vector from "NULL" to "numeric" in the indexes where mean() and std() features values are
         col.classes[col.to.read] <- "numeric"
         
 
-A vector with all column names is generatedd as neede to be used with read.table command. The values are taken from features data frame.
+A vector with all column names is generatedd as needed to be used with read.table command. The values are taken from features data frame.
         
 
         #  create vector of column names from all features
@@ -119,7 +119,7 @@ Activities names are loaded in activity.labels data frame.
         activity.labels  <- read.table(activity.labels.file,stringsAsFactors=FALSE)
         
 
-train and test data frames are loaded using getDataTable function. First column includes activity for each record labeled, second column is subject number and the rest of cthe columns are the columns asked to include in data set, tha is, columns incuding "mean()" or "std()" string in its name
+train and test data frames are loaded using getDataTable function. First column includes activity for each record labeled, second column is subject number and the rest of the columns are the columns asked to include in data set, that is, columns incuding "mean()" or "std()" string in its name.
         
 
         #  get train set
